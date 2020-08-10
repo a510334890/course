@@ -27,5 +27,4 @@ public interface TestMapper {
     int updateByPrimaryKeySelective(Test record);
 
     int updateByPrimaryKey(Test record);
-    public List<Test> list();
 }
