@@ -7,10 +7,9 @@
                         <div class="center">
                             <h1>
                                 <i class="ace-icon fa fa-leaf green"></i>
-                                <span class="red">Ace</span>
-                                <span class="white" id="id-text2">Application</span>
+                                <span class="red">视屏</span>
+                                <span class="white" id="id-text2">管理系统</span>
                             </h1>
-                            <h4 class="blue" id="id-company-text">&copy; Company Name</h4>
                         </div>
 
                         <div class="space-6"></div>
@@ -47,12 +46,12 @@
                                                 <div class="clearfix">
                                                     <label class="inline">
                                                         <input type="checkbox" class="ace" />
-                                                        <span class="lbl"> Remember Me</span>
+                                                        <span class="lbl"> 记住我</span>
                                                     </label>
 
-                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary" v-on:click="login()">
                                                         <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Login</span>
+                                                        <span class="bigger-110">登陆</span>
                                                     </button>
                                                 </div>
                                             </fieldset>
@@ -69,9 +68,15 @@
 </template>
 
 <script>
-    import HelloWorld from './components/HelloWorld.vue'
-    $('body').attr('class', 'login-layout light-login');
     export default {
-        name: 'App',
+        mounted:function(){
+            $('body').attr('class', 'login-layout light-login');
+        },
+        name: 'login',
+        methods:{
+            login(){
+                this.$router.push("/admin")
+            }
+        }
     }
 </script>

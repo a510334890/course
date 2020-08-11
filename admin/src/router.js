@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 import Login from "./views/login.vue"
+import Admin from "./views/admin.vue"
 
 Vue.use(Router);
 
@@ -11,7 +12,10 @@ routes: [{
     path: "*",
     redirect: "/login",
 }, {
-    path: "login",
+    path: "/login",
     component: Login
+}, {
+    path: "/admin",
+    component: Admin
 }]
 })
