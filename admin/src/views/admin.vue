@@ -560,8 +560,8 @@
                 <div class="footer-inner">
                     <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
+							<span class="blue bolder">周浦</span>
+							刘德华 &copy; 2020-2030
 						</span>
 
                         &nbsp; &nbsp;
