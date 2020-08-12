@@ -16,15 +16,18 @@ routes: [{
     path: "/login",
     component: Login
 }, {
-    path: "/admin",
+    path: "/",
+    name:"admin",
     component: Admin,
     children:[{
         path: "welcome",
+        name:"welcome",
         component: Welcome,
 
     },
         {
-            path: "chapter",
+            path: "business/chapter",
+            name:"business/chapter",
             component: Chapter,
 
         }]

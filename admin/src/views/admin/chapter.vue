@@ -971,3 +971,13 @@
                 </tbody>
             </table>
 </template>
+<script>
+    export default {
+        mounted:function(){
+            this.$parent.activeSidebar("business-chapter-sidebar");
+        },
+        name: 'chapter',
+        methods:{
+        }
+    }
+</script>
