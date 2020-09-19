@@ -29,3 +29,5 @@ insert into `chapter` (id, course_id, name) values ('00000016', '00000000', '测
 insert into `chapter` (id, course_id, name) values ('00000017', '00000000', '测试大章17');
 insert into `chapter` (id, course_id, name) values ('00000018', '00000000', '测试大章18');
 insert into `chapter` (id, course_id, name) values ('00000019', '00000000', '测试大章19');
+
+select * from chapter;

@@ -5,6 +5,7 @@ import com.course.server.domain.ChapterExample;
 import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.ChapterMapper;
+import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class ChapterService {
     @Resource
@@ -20,7 +23,6 @@ public class ChapterService {
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());//设置分页从1开始，不是0,根据最近的查询语句
         ChapterExample chapterExample = new ChapterExample();
-        chapterExample.createCriteria().andCourseIdEqualTo("00000000");
         chapterExample.setOrderByClause("id asc");//根据id进行排序查询
         /*new TestExample().setOrderByClause("id");*/
         List<Chapter> chapters = chapterMapper.selectByExample(chapterExample);
@@ -34,5 +36,11 @@ public class ChapterService {
             chapterDtos.add(chapterDto);
         }
         pageDto.setList(chapterDtos);
+    }
+    public void save(ChapterDto chapterDto){
+        chapterDto.setId(UuidUtil.getShortUuid());
+        Chapter chapter = new Chapter();
+        BeanUtils.copyProperties(chapterDto,chapter);
+        chapterMapper.insert(chapter);
     }
 }

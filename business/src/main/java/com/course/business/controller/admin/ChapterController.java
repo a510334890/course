@@ -19,4 +19,9 @@ public class ChapterController {
         service.list(pageDto);
         return pageDto;
     }
+    @RequestMapping("/save")
+    public ChapterDto save(@RequestBody ChapterDto chapterDto){ //因为前端是由json流的方式传递参数的所以在接收参数前要加@RequestBody
+        service.save(chapterDto);
+        return chapterDto;
+    }
 }
