@@ -1,3 +1,4 @@
+/*
 package com.course.server.config;//package com.course.server.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -19,3 +20,4 @@ public class CorsConfig implements WebMvcConfigurer {
     }
 
 }
+*/
