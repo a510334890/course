@@ -29,55 +29,13 @@
                     <td>{{chapter.name}}</td>
                     <td>
                         <div class="hidden-sm hidden-xs btn-group">
-                            <button class="btn btn-xs btn-success">
-                                <i class="ace-icon fa fa-check bigger-120"></i>
-                            </button>
-
-                            <button class="btn btn-xs btn-info">
+                            <button class="btn btn-xs btn-info" v-on:click="edit(chapter)">
                                 <i class="ace-icon fa fa-pencil bigger-120"></i>
                             </button>
 
-                            <button class="btn btn-xs btn-danger">
+                            <button class="btn btn-xs btn-danger" v-on:click="del(chapter.id)">
                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
                             </button>
-
-                            <button class="btn btn-xs btn-warning">
-                                <i class="ace-icon fa fa-flag bigger-120"></i>
-                            </button>
-                        </div>
-
-                        <div class="hidden-md hidden-lg">
-                            <div class="inline pos-rel">
-                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                </button>
-
-                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                    <li>
-                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </td>
                 </tr>
@@ -138,6 +96,11 @@
               let _this=this;
               $("#form-modal").modal("show");
             },
+            edit(chapter){
+                let _this=this;
+                _this.chapter = chapter;
+                $("#form-modal").modal("show");
+            },
             list(page){
                 let _this=this;
                 _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/list",
@@ -146,7 +109,7 @@
                     console.log("数据是",response);
                     let resp = response.data;
                     _this.chapters=resp.content.list;
-                    _this.$refs.pagination.render(page,response.data.total);
+                    _this.$refs.pagination.render(page,resp.content.total);
                 })
             },
             save(){
@@ -157,6 +120,20 @@
                     let resp = response.data;
                     if(resp.success){
                         alert("添加成功！");
+                        $("#form-modal").modal("hide");
+                        _this.list(1);
+                    }
+
+                })
+            },
+            del(id){
+                let _this=this;
+                _this.$ajax.delete("http://127.0.0.1:9000/business/admin/chapter/delete/"+id,
+                    ).then((response)=>{
+                    console.log("数据是",response);
+                    let resp = response.data;
+                    if(resp.success){
+                        alert("删除成功！");
                         $("#form-modal").modal("hide");
                         _this.list(1);
                     }
