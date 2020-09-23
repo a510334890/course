@@ -103,10 +103,12 @@
             },
             list(page){
                 let _this=this;
+                Loading.show();
                 _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/list",
                     {page:page,
             size:_this.$refs.pagination.size}).then((response)=>{
                     console.log("数据是",response);
+                    Loading.hide();
                     let resp = response.data;
                     _this.chapters=resp.content.list;
                     _this.$refs.pagination.render(page,resp.content.total);
@@ -114,11 +116,13 @@
             },
             save(){
                 let _this=this;
+                Loading.show();
                 _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/save",
                    _this.chapter).then((response)=>{
                     console.log("数据是",response);
                     let resp = response.data;
                     if(resp.success){
+                        Loading.hide()
                         $("#form-modal").modal("hide");
                         _this.list(1);
                         toast.success("保存成功");
@@ -143,9 +147,10 @@
                             console.log("数据是",response);
                             let resp = response.data;
                             if(resp.success){
+                                Loading.show();
                                 _this.list(1);
+                                Loading.hide();
                                toast.success("删除成功");
-
                             }
                         })
 
