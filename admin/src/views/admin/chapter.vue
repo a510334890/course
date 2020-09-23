@@ -119,9 +119,9 @@
                     console.log("数据是",response);
                     let resp = response.data;
                     if(resp.success){
-                        alert("添加成功！");
                         $("#form-modal").modal("hide");
                         _this.list(1);
+                        toast.success("保存成功");
                     }
 
                 })
@@ -144,11 +144,8 @@
                             let resp = response.data;
                             if(resp.success){
                                 _this.list(1);
-                                Swal.fire(
-                                    '删除!',
-                                    '你的数据已被删除',
-                                    '成功'
-                                )
+                               toast.success("删除成功");
+
                             }
                         })
 
