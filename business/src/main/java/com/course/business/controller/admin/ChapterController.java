@@ -7,7 +7,6 @@ import com.course.server.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @RestController
 @RequestMapping("/admin/chapter")
 public class ChapterController {
@@ -32,6 +31,5 @@ public class ChapterController {
         ResponseDto responseDto = new ResponseDto();
         service.delete(id);
         return responseDto;
-
     }
 }
