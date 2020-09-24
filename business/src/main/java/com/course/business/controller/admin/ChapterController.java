@@ -5,7 +5,6 @@ import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.ChapterService;
 import com.course.server.util.ValidatorUtil;
-import exception.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
