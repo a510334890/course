@@ -116,6 +116,7 @@
             },
             save(){
                 let _this=this;
+                alert(_this);
                 if(!Validator.require(_this.chapter.name,"名称") || !Validator.require(_this.chapter.courseId,"课程ID")
                 || !Validator.length(_this.chapter.courseId,"课程ID",1,8)){
                     return;
@@ -129,9 +130,11 @@
                         Loading.hide()
                         $("#form-modal").modal("hide");
                         _this.list(1);
-                        toast.success("保存成功");
+                        Toast.success("保存成功");
                     }
-
+                        else{
+                        Toast.warning(resp.message)
+                    }
                 })
             },
             del(id){

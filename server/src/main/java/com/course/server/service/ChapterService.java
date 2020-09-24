@@ -41,7 +41,7 @@ public class ChapterService {
     }
     public void save(ChapterDto chapterDto){
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
-        if(!StringUtils.isEmpty(chapterDto.getId())){
+        if(StringUtils.isEmpty(chapterDto.getId())){
             this.insert(chapter);
         }else{
             this.update(chapter);
