@@ -23,7 +23,8 @@ public class ChapterService {
     @Resource
     private ChapterMapper chapterMapper;
     public void list(PageDto pageDto){
-        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());//设置分页从1开始，不是0,根据最近的查询语句
+        //第三方分页插件/只要从前端传入页数和条数
+        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         ChapterExample chapterExample = new ChapterExample();
         chapterExample.setOrderByClause("id asc");//根据id进行排序查询
         /*new TestExample().setOrderByClause("id");*/
@@ -31,6 +32,8 @@ public class ChapterService {
         PageInfo<Chapter> pageInfo = new PageInfo<>(chapters);
         pageDto.setTotal(pageInfo.getTotal());
         List<ChapterDto> chapterDtos = new ArrayList<>();
+        //chapter的数据复制到chapterDto中，因为我们始终是要对dto来操作数据，
+        //chapter在业务需求中是不给动的，维护起来比较麻烦
         for (int i = 0; i < chapters.size(); i++) {
             Chapter chapter = chapters.get(i);
             ChapterDto chapterDto = new ChapterDto();
@@ -39,6 +42,7 @@ public class ChapterService {
         }
         pageDto.setList(chapterDtos);
     }
+    //单独抽取方法，判断传进来的数据是否有id，没有就到添加数据，有就更新
     public void save(ChapterDto chapterDto){
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
         if(StringUtils.isEmpty(chapterDto.getId())){
