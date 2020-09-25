@@ -19,7 +19,6 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 <tr v-for="chapter in chapters":key="chapter">
                     <td>
