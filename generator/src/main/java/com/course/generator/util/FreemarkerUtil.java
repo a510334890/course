@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class FreemarkerUtil {
     static String ftlPath = "generator//src//main//java//com//course//generator//ftl//";
@@ -20,10 +21,10 @@ public class FreemarkerUtil {
         temp = cfg.getTemplate(ftlName);
 
     }
-    public  static  void generator(String fileName) throws Exception {
+    public  static  void generator(String fileName, Map<String,Object> map) throws Exception {
         FileWriter fw = new FileWriter(fileName);
         BufferedWriter bw = new BufferedWriter(fw);
-        temp.process(null, bw);
+        temp.process(map, bw);
         bw.flush();
         fw.close();
     }
