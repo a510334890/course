@@ -100,19 +100,20 @@
                 _this.chapter = chapter;
                 $("#form-modal").modal("show");
             },
+            /*首页列表查询*/
             list(page){
                 let _this=this;
                 Loading.show();
                 _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/list",
                     {page:page,
             size:_this.$refs.pagination.size}).then((response)=>{
-                    console.log("数据是",response);
                     Loading.hide();
                     let resp = response.data;
                     _this.chapters=resp.content.list;
                     _this.$refs.pagination.render(page,resp.content.total);
                 })
             },
+            /*保存更新*/
             save(){
                 let _this=this;
                 if(!Validator.require(_this.chapter.name,"名称") || !Validator.require(_this.chapter.courseId,"课程ID")
@@ -122,7 +123,6 @@
                 Loading.show();
                 _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/save",
                    _this.chapter).then((response)=>{
-                    console.log("数据是",response);
                     let resp = response.data;
                     if(resp.success){
                         Loading.hide()
@@ -135,6 +135,7 @@
                     }
                 })
             },
+            /*根据id删除数据*/
             del(id){
                 let _this=this;
                 Swal.fire({
@@ -149,7 +150,6 @@
                     if (result.isConfirmed) {
                         _this.$ajax.delete("http://127.0.0.1:9000/business/admin/chapter/delete/"+id,
                         ).then((response)=>{
-                            console.log("数据是",response);
                             let resp = response.data;
                             if(resp.success){
                                 Loading.show();
