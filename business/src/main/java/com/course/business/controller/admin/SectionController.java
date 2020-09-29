@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin/section")
 public class SectionController {
+
+private static final String BUSINESS_NAME="小节";
     @Autowired
     private SectionService service;
     @RequestMapping("/list")
