@@ -45,7 +45,7 @@ public class VueGenerator {
         map.put("fieldList",fieldList);
         map.put("typeSet",typeSet);
         FreemarkerUtil.intiConfig("vue.ftl");
-        FreemarkerUtil.generator(toVuePath+Domain+".vue",map);
+        FreemarkerUtil.generator(toVuePath+domain+".vue",map);
     }
     private static Set<String> getJavaTypes(List<Field> fieldList) {
         Set<String> set = new HashSet<>();
