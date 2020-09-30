@@ -1,5 +1,5 @@
 insert into test (id, name) values ('3','wangwu');
-select * from test;
+select * from course;
 -- 课程
 drop table if exists course;
 create table course (
