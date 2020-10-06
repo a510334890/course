@@ -184,10 +184,15 @@
             /*保存更新*/
             save(){
                 let _this=this;
-                if(!Validator.require(_this.section.name,"名称") || !Validator.require(_this.section.courseId,"课程ID")
-                    || !Validator.length(_this.section.courseId,"课程ID",1,8)){
+                if(1 != 1
+                    || !Validator.require(_this.section.title,"标题")
+                    || !Validator.length(_this.section.title,"标题",1,50)
+                    || !Validator.length(_this.section.video,"课程",1,0)
+
+                ){
                     return;
                 }
+
                 Loading.show();
                 _this.$ajax.post(process.env.VUE_APP_SERVER+"/business/admin/section/save",
                     _this.section).then((response)=>{

@@ -24,7 +24,10 @@ private static final String BUSINESS_NAME="小节";
     }
     @RequestMapping("/save")
     public ResponseDto save(@RequestBody SectionDto sectionDto){ //因为前端是由json流的方式传递参数的所以在接收参数前要加@RequestBody
-        //校验名称是否为空,id是否为空，ID的长度是不是符合规则
+        //保存校验
+               ValidatorUtil.require(sectionDto.getTitle(),"标题");
+               ValidatorUtil.length(sectionDto.getTitle(),"标题",1,50);
+               ValidatorUtil.length(sectionDto.getVideo(),"视频",1,200);
         ResponseDto responseDto = new ResponseDto();
         service.save(sectionDto);
         responseDto.setContent(sectionDto);

@@ -110,10 +110,17 @@
             /*保存更新*/
             save(){
                 let _this=this;
-                if(!Validator.require(_this.${domain}.name,"名称") || !Validator.require(_this.${domain}.courseId,"课程ID")
-                    || !Validator.length(_this.${domain}.courseId,"课程ID",1,8)){
+                if(1 != 1
+                    <#list fieldList as field>
+                        <#if !field.nullAble>
+                    || !Validator.require(_this.${domain}.${field.nameBigHump},"${field.nameCn}")
+                    </#if>
+                    || Validator.length(_this.${domain}.${field.nameBigHump},"${field.nameCn}",1,${field.length})
+                    </#list>
+                ){
                     return;
                 }
+
                 Loading.show();
                 _this.$ajax.post(process.env.VUE_APP_SERVER+"/${module}/admin/${domain}/save",
                     _this.${domain}).then((response)=>{
