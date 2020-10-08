@@ -26,11 +26,13 @@ private static final String BUSINESS_NAME="${tableNameCn}";
     public ResponseDto save(@RequestBody ${Domain}Dto ${domain}Dto){ //因为前端是由json流的方式传递参数的所以在接收参数前要加@RequestBody
         //保存校验
        <#list fieldList as field>
+           <#if field.name !="id" && field.nameHump!="createAt" && field.nameHump!="updateAt" && field.nameHump!="sort">
            <#if !field.nullAble>
                ValidatorUtil.require(${domain}Dto.get${field.nameBigHump}(),"${field.nameCn}");
            </#if>
            <#if (field.length > 0)>
                ValidatorUtil.length(${domain}Dto.get${field.nameBigHump}(),"${field.nameCn}",1,${field.length});
+           </#if>
            </#if>
       </#list>
         ResponseDto responseDto = new ResponseDto();
