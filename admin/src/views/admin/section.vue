@@ -35,7 +35,7 @@
                     <td> {{section.chapterId}}</td>
                     <td> {{section.video}}</td>
                     <td> {{section.time}}</td>
-                    <td> {{section.charge}}</td>
+                    <td> {{CHARGE | optionKV(section.charge)}}</td>
                     <td> {{section.sort}}</td>
                     <td> {{section.createdAt}}</td>
                     <td> {{section.updatedAt}}</td>
@@ -103,7 +103,11 @@
                                 <div class="form-group">
                                     <label  class="col-sm-2 control-label">收费</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" v-model="section.charge">
+                                        <select v-model="section.charge" class="form-control">
+                                            <option v-for="o in CHARGE" v-bind:value="o.key">
+                                                {{o.value}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -155,6 +159,7 @@
             return {
                 section:{},
                 sections: [],
+                CHARGE:[{key:"C",value:"收费"},{key:"F",value:"免费"}]
             }
         },
         name: 'section',
@@ -185,10 +190,9 @@
             save(){
                 let _this=this;
                 if(1 != 1
-
-                    || !Validator.require(_this.section.Title,"标题")
-                    || Validator.length(_this.section.Title,"标题",1,50)
-                    || Validator.length(_this.section.CourseId,"课程",1,0)
+                    || !Validator.require(_this.section.title,"标题")
+                    || !Validator.length(_this.section.title,"标题",1,50)
+                    || !Validator.length(_this.section.video,"课程",1,0)
                 ){
                     return;
                 }

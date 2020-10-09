@@ -115,7 +115,7 @@
                         <#if !field.nullAble>
                     || !Validator.require(_this.${domain}.${field.nameBigHump},"${field.nameCn}")
                     </#if>
-                    || Validator.length(_this.${domain}.${field.nameBigHump},"${field.nameCn}",1,${field.length})
+                    || !Validator.length(_this.${domain}.${field.nameBigHump},"${field.nameCn}",1,${field.length})
                     </#list>
                 ){
                     return;
