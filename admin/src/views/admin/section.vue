@@ -185,10 +185,10 @@
             save(){
                 let _this=this;
                 if(1 != 1
-                    || !Validator.require(_this.section.title,"标题")
-                    || !Validator.length(_this.section.title,"标题",1,50)
-                    || !Validator.length(_this.section.video,"课程",1,0)
 
+                    || !Validator.require(_this.section.Title,"标题")
+                    || Validator.length(_this.section.Title,"标题",1,50)
+                    || Validator.length(_this.section.CourseId,"课程",1,0)
                 ){
                     return;
                 }

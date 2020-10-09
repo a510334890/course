@@ -17,7 +17,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
 public class SectionService {
     @Resource
@@ -28,6 +27,7 @@ public class SectionService {
         SectionExample sectionExample = new SectionExample();
         sectionExample.setOrderByClause("id asc");//根据id进行排序查询
         /*new TestExample().setOrderByClause("id");*/
+                sectionExample.setOrderByClause("sort asc");
         List<Section> sections = sectionMapper.selectByExample(sectionExample);
         PageInfo<Section> pageInfo = new PageInfo<>(sections);
         pageDto.setTotal(pageInfo.getTotal());
