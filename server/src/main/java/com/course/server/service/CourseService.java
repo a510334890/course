@@ -28,6 +28,7 @@ public class CourseService {
         CourseExample courseExample = new CourseExample();
         courseExample.setOrderByClause("id asc");//根据id进行排序查询
         /*new TestExample().setOrderByClause("id");*/
+                courseExample.setOrderByClause("sort asc");
         List<Course> courses = courseMapper.selectByExample(courseExample);
         PageInfo<Course> pageInfo = new PageInfo<>(courses);
         pageDto.setTotal(pageInfo.getTotal());

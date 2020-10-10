@@ -18,6 +18,7 @@ public class EnumGenerator {
         long begin = System.currentTimeMillis();
         try {
             toJson(SectionChargeEnum.class, bufferObject, bufferArray);
+           /* toJson(CourseChargeEnum.class, bufferObject, bufferArray);*/
 
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);

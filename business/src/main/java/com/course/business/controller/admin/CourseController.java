@@ -24,7 +24,11 @@ private static final String BUSINESS_NAME="课程";
     }
     @RequestMapping("/save")
     public ResponseDto save(@RequestBody CourseDto courseDto){ //因为前端是由json流的方式传递参数的所以在接收参数前要加@RequestBody
-        //校验名称是否为空,id是否为空，ID的长度是不是符合规则
+        //保存校验
+               ValidatorUtil.require(courseDto.getName(),"名称");
+               ValidatorUtil.length(courseDto.getName(),"名称",1,50);
+               ValidatorUtil.length(courseDto.getSummary(),"概述",1,2000);
+               ValidatorUtil.length(courseDto.getImage(),"封面",1,100);
         ResponseDto responseDto = new ResponseDto();
         service.save(courseDto);
         responseDto.setContent(courseDto);

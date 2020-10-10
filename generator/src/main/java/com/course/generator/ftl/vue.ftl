@@ -83,7 +83,7 @@
                 ${domain}s: [],
             }
         },
-        name: '${domain}',
+        name: '${module}-${domain}',
         methods:{
             add(){
                 let _this=this;
