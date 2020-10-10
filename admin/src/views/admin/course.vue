@@ -38,9 +38,9 @@
                     <td> {{course.time}}</td>
                     <td> {{course.price}}</td>
                     <td> {{course.image}}</td>
-                    <td> {{course.level}}</td>
-                    <td> {{course.charge}}</td>
-                    <td> {{course.status}}</td>
+                    <td> {{COURSE_LEVEL | optionKV(course.level)}}</td>
+                    <td> {{COURSE_CHARGE | optionKV(course.charge)}}</td>
+                    <td> {{COURSE_STATUS| optionKV(course.status)}}</td>
                     <td> {{course.enroll}}</td>
                     <td> {{course.sort}}</td>
                     <td> {{course.createdAt}}</td>
@@ -109,19 +109,31 @@
                                 <div class="form-group">
                                     <label  class="col-sm-2 control-label">级别</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" v-model="course.level">
+                                        <select class="form-control" v-model="course.level">
+                                            <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">
+                                                {{o.value}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label  class="col-sm-2 control-label">收费</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" v-model="course.charge">
+                                        <select class="form-control" v-model="course.charge">
+                                            <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">
+                                                {{o.value}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label  class="col-sm-2 control-label">状态</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" v-model="course.status">
+                                        <select class="form-control" v-model="course.status">
+                                            <option v-for="o in COURSE_STATUS" v-bind:value="o.key">
+                                                {{o.value}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -168,8 +180,9 @@
 </template>
 <script>
     import Pagination from "../../components/pagination";
+    import Section from "./section";
     export default {
-        components: {Pagination},
+        components: {Section, Pagination},
         mounted:function(){
             let _this=this;
             _this.list(1);
@@ -179,8 +192,12 @@
             return {
                 course:{},
                 courses: [],
+                COURSE_CHARGE:COURSE_CHARGE,
+                COURSE_STATUS:COURSE_STATUS,
+                COURSE_LEVEL:COURSE_LEVEL,
             }
         },
+
         name: 'business-course',
         methods:{
             add(){

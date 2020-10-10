@@ -113,9 +113,9 @@
                 if(1 != 1
                     <#list fieldList as field>
                         <#if !field.nullAble>
-                    || !Validator.require(_this.${domain}.${field.nameBigHump},"${field.nameCn}")
+                    || !Validator.require(_this.${domain}.${field.nameHump},"${field.nameCn}")
                     </#if>
-                    || !Validator.length(_this.${domain}.${field.nameBigHump},"${field.nameCn}",1,${field.length})
+                    || !Validator.length(_this.${domain}.${field.nameHump},"${field.nameCn}",1,${field.length})
                     </#list>
                 ){
                     return;

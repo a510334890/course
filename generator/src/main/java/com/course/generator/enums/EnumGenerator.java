@@ -1,5 +1,6 @@
 package com.course.generator.enums;
 
+import com.course.server.domain.Course;
 import com.course.server.enums.*;
 
 import java.io.FileOutputStream;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class EnumGenerator {
 //    static String path = "admin\\public\\static\\js\\enums.js";
-    static String path = "web\\public\\static\\js\\enums.js";
+    static String path = "admin//public//static//js//enums.js";
 
     public static void main(String[] args) {
         StringBuffer bufferObject = new StringBuffer();
@@ -18,8 +19,9 @@ public class EnumGenerator {
         long begin = System.currentTimeMillis();
         try {
             toJson(SectionChargeEnum.class, bufferObject, bufferArray);
-           /* toJson(CourseChargeEnum.class, bufferObject, bufferArray);*/
-
+            toJson(CourseChargeEnum.class, bufferObject, bufferArray);
+            toJson(CourseStatusEnum.class, bufferObject, bufferArray);
+            toJson(CourseLevelEnum.class, bufferObject, bufferArray);
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);
         } catch (Exception e) {
